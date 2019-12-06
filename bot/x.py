@@ -563,6 +563,47 @@ def lineBot(op):
                             txt += u'@Alin \n'
                         cl.sendMessage(to, text=txt, contentMetadata={u'MENTION': json.dumps({'MENTIONEES':b})}, contentType=0)
                         cl.sendMessage(to, "總共 {} 人".format(str(len(nama))))
+                elif msg.text.lower().startswith("add_wc"):
+                    list_ = msg.text.split(":")
+                    if to not in ban['wel']:
+                        try:
+                            ban['wel'][to] = list_[1]
+                            with open('ban.json', 'w') as fp:
+                                json.dump(ban, fp, sort_keys=True, indent=4)
+                                cl.sendMessage(to, "[提示]\n成功設置群組歡迎訊息\n歡迎訊息: " + list_[1])
+                        except:
+                            cl.sendMessage(to, "[ERROR]\n設置群組歡迎訊息失敗!!!")
+                    else:
+                        cl.sendMessage(to, "[ERROR]\n群組歡迎訊息已存在!!!")
+                elif msg.text.lower().startswith("renew_wc"):
+                    list_ = msg.text.split(":")
+                    if to in ban['wel']:
+                        try:
+                            del ban['wel'][to]
+                            ban['wel'][to] = list_[1]
+                            with open('ban.json', 'w') as fp:
+                                json.dump(ban, fp, sort_keys=True, indent=4)
+                                cl.sendMessage(to, "[提示]\n成功更新群組歡迎訊息\n歡迎訊息: " + list_[1])
+                        except:
+                            cl.sendMessage(to, "[ERROR]\n更新群組歡迎訊息失敗!!!")
+                    else:
+                        cl.sendMessage(to, "[ERROR]\n你正在更新不存在的歡迎訊息!!!")
+                elif text.lower() == ("del_wc"):
+                    if to in ban['wel']:
+                        try:
+                            del ban['wel'][to]
+                            with open('ban.json', 'w') as fp:
+                                json.dump(ban, fp, sort_keys=True, indent=4)
+                                cl.sendMessage(to, "[提示]\n成功刪除群組歡迎訊息")
+                        except:
+                            cl.sendMessage(to, "[ERROR]\n刪除群組歡迎訊息失敗!!!")
+                    else:
+                        cl.sendMessage(to, "[ERROR]\n你正在刪除不存在的歡迎訊息!!!")
+                elif text.lower() == 'wc':
+                    if to in ban['wel']:
+                        cl.sendMessage(to, ban['wel'][to])
+                    else:
+                        cl.sendMessage(to, "[提示]\n使用預設群組歡迎訊息中!!!")    
                 elif text.lower() == 'zt':
                     gs = cl.getGroup(to)
                     targets = []
