@@ -216,7 +216,7 @@ def lineBot(op):
                             arrData = ""
                             text = "%s " %('你好~~')
                             arr = []
-                            mention = "@x "
+                            mention = "@! "
                             slen = str(len(text))
                             elen = str(len(text) + len(mention) - 1)
                             arrData = {'S':slen, 'E':elen, 'M':op.param2}
