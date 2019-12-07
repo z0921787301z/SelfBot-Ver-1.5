@@ -210,7 +210,6 @@ def lineBot(op):
                     for mid in gInviMids:
                         cl.cancelGroupInvitation(op.param1, [mid])
                     cl.sendMessage(op.param1,"Do not invite blacklist user...")
-            else:
                 if op.param2 not in ban['bot']:
                     if op.param1 not in ban['wel']:
                         try:
