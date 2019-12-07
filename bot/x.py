@@ -210,13 +210,26 @@ def lineBot(op):
                     for mid in gInviMids:
                         cl.cancelGroupInvitation(op.param1, [mid])
                     cl.sendMessage(op.param1,"Do not invite blacklist user...")
-        if op.type == 17:
-            if op.param1 in ban["blacklist"]:
-                cl.kickoutFromGroup(op.param1,[op.param1])
-                cl.sendMessage(op.param1,"Blacklist user joined...")
-            if op.param1 in settings["mention"]:
-                name = str(cl.getGroup(op.param1).name)
-                sendMention(op.param1, "你好 @! 歡迎加入"+name,[op.param2])
+            else:
+                if op.param2 not in ban['bot']:
+                    if op.param1 not in ban['wel']:
+                        try:
+                            arrData = ""
+                            text = "%s " %('你好~~')
+                            arr = []
+                            mention = "@x "
+                            slen = str(len(text))
+                            elen = str(len(text) + len(mention) - 1)
+                            arrData = {'S':slen, 'E':elen, 'M':op.param2}
+                            arr.append(arrData)
+                            text += mention + '!!歡迎加入群組!!!!'
+                            cl.sendMessage(op.param1,text, {'MENTION': str('{"MENTIONEES":' + json.dumps(arr) + '}')}, 0)
+                        except Exception as error:
+                            print(error)
+                    else:
+                        cl.sendMessage(op.param1, ban['wel'][op.param1])
+        if op.type == 0:
+            return
         if op.type == 19:
             if op.param1 in settings["mention"]:
                 chiya=[op.param2]
