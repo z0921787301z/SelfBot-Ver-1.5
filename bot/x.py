@@ -581,7 +581,7 @@ def lineBot(op):
                     if to not in ban['wel']:
                         try:
                             ban['wel'][to] = list_[1]
-                            with open('bot/ban.json','w') as fp:
+                            with open('bot/ban.json','w','utf-8') as fp:
                                 json.dump(ban, fp, sort_keys=True, indent=4)
                                 cl.sendMessage(to, "[提示]\n成功設置群組歡迎訊息\n歡迎訊息: " + list_[1])
                         except:
@@ -594,7 +594,7 @@ def lineBot(op):
                         try:
                             del ban['wel'][to]
                             ban['wel'][to] = list_[1]
-                            with open('bot/ban.json','w') as fp:
+                            with open('bot/ban.json','w','utf-8') as fp:
                                 json.dump(ban, fp, sort_keys=True, indent=4)
                                 cl.sendMessage(to, "[提示]\n成功更新群組歡迎訊息\n歡迎訊息: " + list_[1])
                         except:
@@ -605,7 +605,7 @@ def lineBot(op):
                     if to in ban['wel']:
                         try:
                             del ban['wel'][to]
-                            with open(bot/ban.json','w') as fp:
+                            with open('bot/ban.json','w','utf-8') as fp:
                                 json.dump(ban, fp, sort_keys=True, indent=4)
                                 cl.sendMessage(to, "[提示]\n成功刪除群組歡迎訊息")
                         except:
