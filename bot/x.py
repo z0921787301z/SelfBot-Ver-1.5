@@ -136,6 +136,7 @@ wait = {
     "getmid":False,
     "pic":False,
     "monmonpic":False,
+    "del" : False,
     "keepban":0,
     "keepunban":0,
     'rapidFire':{},
